@@ -1,6 +1,7 @@
 import "./App.css";
 import { getSwedenAndThailandData } from "./apiService";
 import { useState, useEffect } from "react";
+import IndicatorCard from "./components/indicatorCard";
 
 export default function App() {
   const [swedenData, setSwedenData] = useState([]);
@@ -8,18 +9,43 @@ export default function App() {
   const [swedenAndThailandData, setSwedenAndThailandData] = useState([]);
 
   useEffect(() => {
+    // Call the apiService method then set the state to hold the response data
     getSwedenAndThailandData().then((data) => {
       setSwedenAndThailandData(data);
     });
   }, []);
 
   useEffect(() => {
-    const swedenFiltered = swedenAndThailandData.filter(
+    // Separating out the Sweden and Thailand data
+    const swedenMetrics = swedenAndThailandData.filter(
       (element) => element.Country === "Sweden",
     );
-    const thailandFiltered = swedenAndThailandData.filter(
+    const thailandMetrics = swedenAndThailandData.filter(
       (element) => element.Country === "Thailand",
     );
+
+    // Find the common categories between Sweden and Thailand
+    const commonCategories = swedenMetrics.reduce((categories, element) => {
+      if (
+        thailandMetrics.some(
+          (thailandElement) => thailandElement.Category === element.Category,
+        )
+      ) {
+        categories.push(element.Category);
+      }
+      return categories;
+    }, []);
+
+    // Filter Sweden data to include only common categories
+    const swedenFiltered = swedenMetrics.filter((element) =>
+      commonCategories.includes(element.Category),
+    );
+
+    // Filter Thailand data to include only common categories
+    const thailandFiltered = thailandMetrics.filter((element) =>
+      commonCategories.includes(element.Category),
+    );
+
     setSwedenData(swedenFiltered);
     setThailandData(thailandFiltered);
   }, [swedenAndThailandData]);
@@ -35,23 +61,19 @@ export default function App() {
           <div className="column">
             {swedenData ? (
               swedenData.map((indicator) => (
-                <div className="indicator-container" key={indicator.URL}>
-                  <h2>{indicator.Category}</h2>
-                </div>
+                <IndicatorCard key={indicator.Title} indicator={indicator} />
               ))
             ) : (
-              <p>No Data</p>
+              <p>No data to display</p>
             )}
           </div>
           <div className="column">
             {thailandData ? (
               thailandData.map((indicator) => (
-                <div className="indicator-container" key={indicator.URL}>
-                  <h2>{indicator.Category}</h2>
-                </div>
+                <IndicatorCard key={indicator.Title} indicator={indicator} />
               ))
             ) : (
-              <p>No Data</p>
+              <p>No data to display</p>
             )}
           </div>
         </div>
