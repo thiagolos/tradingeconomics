@@ -13,7 +13,7 @@ getSwedenAndThailandData = async function (req, res) {
         (item) => item.Title === "Thai Baht",
       );
 
-      // Define the conversion rates
+      // Here we look through the data and convert all local currencies (in this case SEK and THB) to USD. This makes comparison easier
       const SEKConversionRate = swedishKronaObject.LatestValue;
       const THBConversionRate = thaiBahtObject.LatestValue;
 

@@ -1,12 +1,12 @@
-import "./App.css";
+import React, { useState, useEffect } from "react";
 import { getSwedenAndThailandData } from "./apiService";
-import { useState, useEffect } from "react";
 import IndicatorCard from "./components/indicatorCard";
 
 export default function App() {
   const [swedenData, setSwedenData] = useState([]);
   const [thailandData, setThailandData] = useState([]);
   const [swedenAndThailandData, setSwedenAndThailandData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(""); // Track selected category
 
   useEffect(() => {
     // Call the apiService method then set the state to hold the response data
@@ -40,7 +40,6 @@ export default function App() {
     const swedenFiltered = swedenMetrics.filter((element) =>
       commonCategories.includes(element.Category),
     );
-
     // Filter Thailand data to include only common categories
     const thailandFiltered = thailandMetrics.filter((element) =>
       commonCategories.includes(element.Category),
@@ -50,6 +49,11 @@ export default function App() {
     setThailandData(thailandFiltered);
   }, [swedenAndThailandData]);
 
+  // Extract unique CategoryGroup values from swedenData
+  const uniqueCategoryGroups = Array.from(
+    new Set(swedenData.map((indicator) => indicator.CategoryGroup)),
+  );
+
   return (
     <>
       <div className="main-container">
@@ -57,24 +61,52 @@ export default function App() {
           <h1>Sweden</h1>
           <h1>Thailand</h1>
         </div>
+        <p className="note">
+          <span>Note:</span>
+          <br />
+          The following Trading Economics data have been filtered to include
+          only the metrics which are provided for both nations. <br />
+          All local currencies have been converted into USD using the most
+          recently provided exchange rates.
+        </p>
+        <div className="category-filter">
+          <p>Filter by category:</p>
+          <select
+            name="categories"
+            id="category-list"
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            value={selectedCategory}
+          >
+            <option value="">All</option>{" "}
+            {uniqueCategoryGroups.map((categoryGroup, index) => (
+              <option key={index} value={categoryGroup}>
+                {categoryGroup}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="column-container">
           <div className="column">
-            {swedenData ? (
-              swedenData.map((indicator) => (
+            {swedenData
+              .filter((indicator) =>
+                selectedCategory
+                  ? indicator.CategoryGroup === selectedCategory
+                  : true,
+              )
+              .map((indicator) => (
                 <IndicatorCard key={indicator.Title} indicator={indicator} />
-              ))
-            ) : (
-              <p>No data to display</p>
-            )}
+              ))}
           </div>
           <div className="column">
-            {thailandData ? (
-              thailandData.map((indicator) => (
+            {thailandData
+              .filter((indicator) =>
+                selectedCategory
+                  ? indicator.CategoryGroup === selectedCategory
+                  : true,
+              )
+              .map((indicator) => (
                 <IndicatorCard key={indicator.Title} indicator={indicator} />
-              ))
-            ) : (
-              <p>No data to display</p>
-            )}
+              ))}
           </div>
         </div>
       </div>

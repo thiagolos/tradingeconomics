@@ -11,6 +11,7 @@
   justify-content: space-around;
   position: sticky;
   top: 0;
+  border-bottom: 3px dashed  rgb(233, 233, 233);
 }
 
 .column-container {
@@ -34,4 +35,36 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.category-filter {
+  display: flex;
+  align-items: center;
+  width: 18vw;
+  justify-content: space-between;
+}
+
+#category-list {
+  height: 1.5em;
+  width: 10vw;
+}
+
+/* Add this CSS to your stylesheet */
+.indicator-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.indicator-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  color: gray;
+  padding-top: 1em;
+  font-style: italic;
 }
