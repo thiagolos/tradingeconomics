@@ -37,11 +37,26 @@ getSwedenAndThailandData = async function (req, res) {
       res.status(200).send(updatedResponse);
     });
   } catch (err) {
-    console.log("Failed to fetch calendar data", err);
+    console.log("Failed to fetch country data", err);
     res.status(500).send(err);
+  }
+};
+
+getHistoricalGDP = async function (req, res) {
+  try {
+    te.getHistoricalData(
+      ((country = ["sweden", "thailand"]),
+      (indicator = "gdp"),
+      (start_date = "2000-01-01")),
+    ).then((response) => {
+      res.status(200).send(response);
+    });
+  } catch (err) {
+    console.log("Failed to fetch historical data", err);
   }
 };
 
 module.exports = {
   getSwedenAndThailandData,
+  getHistoricalGDP,
 };

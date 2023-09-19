@@ -3,6 +3,7 @@ const teController = require("./controllers/te.controller.js");
 
 const router = express.Router();
 
-router.get("/getSwedenAndThailandData", teController.getSwedenAndThailandData);
+router.get("/SwedenAndThailandData", teController.getSwedenAndThailandData);
+router.get("/historicalGDP", teController.getHistoricalGDP);
 
 module.exports = router;
