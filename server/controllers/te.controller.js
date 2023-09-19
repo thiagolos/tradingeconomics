@@ -1,8 +1,6 @@
 const te = require("tradingeconomics");
 te.login("740f7b774a0a4dd:tgsklshwtjbfx2d");
 
-const countryList = ["Sweden", "Mexico", "New Zealand", "Thailand"];
-
 getSwedenAndThailandData = async function (req, res) {
   try {
     te.getIndicatorData((country = ["Sweden", "Thailand"])).then((response) => {
