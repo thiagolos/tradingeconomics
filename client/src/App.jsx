@@ -12,11 +12,11 @@ export default function App() {
   return (
     <>
       <div className="toggle-view">
-        <label class="switch">
+        <label className="switch">
           <input type="checkbox" onClick={toggleView}></input>
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
-        Toggle table / chart
+        <div className="toggle-text">Toggle table / chart</div>
       </div>
 
       <div className="main-container">

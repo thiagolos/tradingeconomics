@@ -3,9 +3,9 @@ import { getSwedenAndThailandData } from "../apiService";
 import IndicatorCard from "./indicatorCard";
 
 export default function CountryComparison() {
+  const [swedenAndThailandData, setSwedenAndThailandData] = useState([]);
   const [swedenData, setSwedenData] = useState([]);
   const [thailandData, setThailandData] = useState([]);
-  const [swedenAndThailandData, setSwedenAndThailandData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(""); // Track selected category
 
   useEffect(() => {
