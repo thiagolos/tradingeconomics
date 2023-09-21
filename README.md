@@ -3,13 +3,13 @@
 This app is a single-page application that renders two sets of data about Thailand and Sweden:
 
 ## Dataset 1 (Direct Indicator Comparison):
-
+![Screenshot 2023-09-21 at 20 22 49](https://github.com/thiagolos/tradingeconomics/assets/128632331/21d0e887-43aa-4523-af5c-38246155ed1d)
 - The most recent data provided by the Trading Economics (TE) API on Sweden and Thailand.
 - Metrics have been filtered to include only data provided for both countries.
 - All local currencies have been converted to USD (using the rates most recently provided by TE) for better comparison.
 
 ## Dataset 2 (Time Series GDP Comparison):
-
+![Screenshot 2023-09-21 at 20 22 54](https://github.com/thiagolos/tradingeconomics/assets/128632331/d21c6631-5f0f-4313-bbc8-c30ef051c4b4)
 - Time Series GDP data collected yearly for both Sweden and Thailand since the year 2000 are displayed on a single chart for easy comparison.
 
 The application is responsive and thus utilizes responsive CSS rules and media queries to adapt to changes in screen size.
