@@ -1,6 +1,6 @@
 # Trading Economics Metric Comparison: Sweden vs Thailand
 
-This app is a single-page application that renders two sets of data about Thailand and Sweden:
+This app is a single-page React application that renders two sets of data about Thailand and Sweden:
 
 ## Dataset 1 (Direct Indicator Comparison):
 ![Screenshot 2023-09-21 at 20 22 49](https://github.com/thiagolos/tradingeconomics/assets/128632331/21d0e887-43aa-4523-af5c-38246155ed1d)
@@ -18,14 +18,14 @@ The application is responsive and thus utilizes responsive CSS rules and media q
 
 **Frontend:**
 
-- Javascript
+- JavaScript
 - React
 - Axios
 - Chart.js
 
 **Backend:**
 
-- Javascript
+- JavaScript
 - Express.js
 - Trading Economics API
 
