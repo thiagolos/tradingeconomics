@@ -1,3 +1,5 @@
+// Here we use standard express routing following the MVC structure
+
 const express = require("express");
 const teController = require("./controllers/te.controller.js");
 

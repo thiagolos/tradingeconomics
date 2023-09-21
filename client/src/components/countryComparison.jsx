@@ -6,10 +6,10 @@ export default function CountryComparison() {
   const [swedenAndThailandData, setSwedenAndThailandData] = useState([]);
   const [swedenData, setSwedenData] = useState([]);
   const [thailandData, setThailandData] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(""); // Track selected category
+  const [selectedCategory, setSelectedCategory] = useState(""); // Tracking selected category
 
   useEffect(() => {
-    // Call the apiService method then set the state to hold the response data
+    // Calling the apiService method then set the state to hold the response data
     getSwedenAndThailandData().then((data) => {
       setSwedenAndThailandData(data);
     });
@@ -24,7 +24,7 @@ export default function CountryComparison() {
       (element) => element.Country === "Thailand",
     );
 
-    // Find the common categories between Sweden and Thailand
+    // Finding the common categories between Sweden and Thailand
     const commonCategories = swedenMetrics.reduce((categories, element) => {
       if (
         thailandMetrics.some(
@@ -36,11 +36,11 @@ export default function CountryComparison() {
       return categories;
     }, []);
 
-    // Filter Sweden data to include only common categories
+    // Filtering Sweden data to include only common categories
     const swedenFiltered = swedenMetrics.filter((element) =>
       commonCategories.includes(element.Category),
     );
-    // Filter Thailand data to include only common categories
+    // Filtering Thailand data to include only common categories
     const thailandFiltered = thailandMetrics.filter((element) =>
       commonCategories.includes(element.Category),
     );
@@ -49,7 +49,7 @@ export default function CountryComparison() {
     setThailandData(thailandFiltered);
   }, [swedenAndThailandData]);
 
-  // Extract unique CategoryGroup values from swedenData
+  // Extracting unique CategoryGroup values from swedenData
   const uniqueCategoryGroups = Array.from(
     new Set(swedenData.map((indicator) => indicator.CategoryGroup)),
   );
@@ -70,12 +70,14 @@ export default function CountryComparison() {
       </p>
       <div className="category-filter">
         <p>Filter by category:</p>
+        {/* Here I have the input for the category filter */}
         <select
           name="categories"
           id="category-list"
           onChange={(e) => setSelectedCategory(e.target.value)}
           value={selectedCategory}
         >
+          {/* The option of all clears the filter therefore displaying all data by default */}
           <option value="">All</option>{" "}
           {uniqueCategoryGroups.map((categoryGroup, index) => (
             <option key={index} value={categoryGroup}>
@@ -85,6 +87,7 @@ export default function CountryComparison() {
         </select>
       </div>
       <div className="column-container">
+        {/* I have built this application to be highly modularised, and such have mapped our indicators into their own component */}
         <div className="column">
           {swedenData
             .filter((indicator) =>

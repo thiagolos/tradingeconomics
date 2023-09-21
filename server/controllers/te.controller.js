@@ -1,8 +1,11 @@
 const te = require("tradingeconomics");
+
+// This is my free account API key/secret:
 te.login("740f7b774a0a4dd:tgsklshwtjbfx2d");
 
 getSwedenAndThailandData = async function (req, res) {
   try {
+    // Here we fetch the indicator data for Sweden and Thailand from one of the provided endpoints
     te.getIndicatorData((country = ["Sweden", "Thailand"])).then((response) => {
       const swedishKronaObject = response.find(
         (item) => item.Title === "Swedish Krona",
@@ -31,7 +34,7 @@ getSwedenAndThailandData = async function (req, res) {
         }
         return item;
       });
-
+      // Then we provide a success message and send the response with the converted currencies
       res.status(200).send(updatedResponse);
     });
   } catch (err) {
@@ -40,6 +43,7 @@ getSwedenAndThailandData = async function (req, res) {
   }
 };
 
+// Here we fetch the time series data on GDP for both Sweden and Thailand
 getHistoricalGDP = async function (req, res) {
   try {
     te.getHistoricalData(

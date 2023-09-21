@@ -1,3 +1,5 @@
+// Standard Express app set up, using cors to allow resounce sharing and body parsing for easier data handling
+
 const express = require("express");
 const cors = require("cors");
 const router = require("./router.js");

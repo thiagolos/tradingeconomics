@@ -1,3 +1,5 @@
+// Here I set up our API service to communicate with our backend. I am using Axios for HTTP requests.
+
 import axios from "axios";
 const BASE_URL = "http://localhost:3001/";
 

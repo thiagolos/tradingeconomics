@@ -1,3 +1,5 @@
+// The indicator card component displays the indicator and its value, and also tells us when the data was last updated
+
 import "../App.css";
 
 export default function IndicatorCard({ indicator }) {

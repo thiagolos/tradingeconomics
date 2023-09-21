@@ -9,7 +9,7 @@ export default function HistoricalData() {
   const chartRef = useRef(null);
 
   useEffect(() => {
-    // Call the apiService method then set the state to hold the response data
+    // Calling the apiService method then set the state to hold the response data
     getHistoricalGDP().then((data) => {
       setSwedenAndThailandData(data);
     });
@@ -45,7 +45,7 @@ export default function HistoricalData() {
 
   useEffect(() => {
     if (chartRef.current) {
-      // Update the data for both Sweden and Thailand charts
+      // Updating the data for both Sweden and Thailand charts
       chartRef.current.data.labels = swedenData.map((row) => row.year);
       chartRef.current.data.datasets[0].data = swedenData.map(
         (row) => row.value,
@@ -56,6 +56,8 @@ export default function HistoricalData() {
       chartRef.current.update();
     }
   }, [swedenData, thailandData]);
+
+  // I have used the library Chart.js for building our chart using the Trading Economics data
 
   useEffect(() => {
     if (!chartRef.current) {
