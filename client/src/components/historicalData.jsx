@@ -65,11 +65,11 @@ export default function HistoricalData() {
           labels: swedenData.map((row) => row.year),
           datasets: [
             {
-              label: "Sweden Gross Domestic Product (GDP)",
+              label: "Sweden Gross Domestic Product (GDP) (USD/ Billion)",
               data: swedenData.map((row) => row.value),
             },
             {
-              label: "Thailand Gross Domestic Product (GDP)",
+              label: "Thailand Gross Domestic Product (GDP) (USD/ Billion)",
               data: swedenData.map((row) => row.value),
             },
           ],
